@@ -25,13 +25,13 @@ html {
 }
 
 .back {
+    position: fixed;
     object-fit: cover;
     top: 0;
     left: 0;
     width: calc(100vw - 1px);
     height: calc(100vh - 1px);
     z-index: -1;
-    position: fixed;
 }
 
 .spin {
