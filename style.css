@@ -1,0 +1,152 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+:root {
+    --background: #272727;
+    --spin-background: #ffe44d;
+    --spin-background-h: #FFD700;
+    --wheel-border-i: #4b6d61;
+}
+
+#body {
+    background-color:#272727;
+    color:black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.spin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%; */
+    height: 100vh;
+}
+
+.spin-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 75vh;
+    height: 75vh; */
+    width: 700px;
+    height: 700px;
+}
+
+.spin-btn {
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    background-color: var(--spin-background);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgb(31, 31, 31);
+    letter-spacing: 0.1rem;
+    border: 4px solid rgba(0,0,0,0.75);
+    cursor: pointer;
+}
+
+.spin-btn::before {
+    content: '';
+    position: absolute;
+    right: -30%;
+    width: 30%;
+    height: 45%;
+    /* height: var(--angle); */
+    transform: rotate(90deg);
+    background-color: var(--spin-background);
+    clip-path: polygon(50% 0%, 13% 100%, 87% 100%);
+}
+
+.spin-btn:hover, .spin-btn:hover:before {
+    background-color: var(--spin-background-h);
+}
+
+.spin-wheel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #272727;
+    border-radius: 50%;
+    box-shadow: 
+    0 0 0 5px var(--background),
+    0 0 0 18px rgba(0,0,0,0.75),
+    0 0 0 25px var(--wheel-border-i);
+    overflow: hidden;
+    transform: rotate(90deg);
+    transition: transform 1s ease;
+}
+
+.spin-wheel .value:nth-child(odd) {
+    background-color: red;
+}
+
+.spin-wheel .value:nth-child(even) {
+    background-color: green;
+}
+
+.spin-wheel .value {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    /* background-color: var(--clr); */
+    transform-origin: bottom right;
+    transform: rotate(calc(var(--deg) * var(--i)));
+    /* clip-path: polygon(0 0, 23% 0, 100% 100%, 0 23%); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.spin-wheel .value span {
+    position: relative;
+    transform: rotate(-135deg);
+    font-size: 2em;
+    font-weight: 700;
+    color: white;
+    text-shadow: 3px 5px 2px rgba(0,0,0,0.15);
+}
+
+.name-list-container {
+    width: 20%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content:start;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    /* border: 1px solid white; */
+    background-color: rgba(0,0,0,0.25);
+    border-radius: 0 25px 25px 0;
+    padding: 25px;
+}
+
+.name-list-container hr {
+    /* border: 5px solid white; */
+    /* color: white; */
+    background-color: white;
+    width: 75%;
+}
+
