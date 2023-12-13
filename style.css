@@ -11,7 +11,6 @@ html {
 }
 
 #body {
-    background-color:#272727;
     color:black;
     margin: 0;
     padding: 0;
@@ -23,6 +22,16 @@ html {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.back {
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: calc(100vw - 1px);
+    height: calc(100vh - 1px);
+    z-index: -1;
+    position: fixed;
 }
 
 .spin {
@@ -48,7 +57,7 @@ html {
     position: absolute;
     width: 25%;
     height: 25%;
-    background-color: var(--spin-background);
+    background: var(--spin-background);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -65,17 +74,18 @@ html {
 .spin-btn::before {
     content: '';
     position: absolute;
-    right: -30%;
+    right: -13%;
+    top: 00%;
     width: 30%;
     height: 45%;
     /* height: var(--angle); */
-    transform: rotate(90deg);
-    background-color: var(--spin-background);
+    transform: rotate(50deg);
+    background: var(--spin-background);
     clip-path: polygon(50% 0%, 13% 100%, 87% 100%);
 }
 
 .spin-btn:hover, .spin-btn:hover:before {
-    background-color: var(--spin-background-h);
+    background: var(--spin-background-h);
 }
 
 .spin-wheel {
@@ -84,7 +94,7 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #272727;
+    background: #272727;
     border-radius: 50%;
     box-shadow: 
     0 0 0 5px var(--background),
@@ -96,18 +106,18 @@ html {
 }
 
 .spin-wheel .value:nth-child(odd) {
-    background-color: red;
+    background: red;
 }
 
 .spin-wheel .value:nth-child(even) {
-    background-color: green;
+    background: green;
 }
 
 .spin-wheel .value {
     position: absolute;
     width: 50%;
     height: 50%;
-    /* background-color: var(--clr); */
+    /* background: var(--clr); */
     transform-origin: bottom right;
     transform: rotate(calc(var(--deg) * var(--i)));
     /* clip-path: polygon(0 0, 23% 0, 100% 100%, 0 23%); */
@@ -138,15 +148,44 @@ html {
     flex-direction: column;
     color: white;
     /* border: 1px solid white; */
-    background-color: rgba(0,0,0,0.25);
+    background: rgba(0,0,0,0.25);
     border-radius: 0 25px 25px 0;
     padding: 25px;
+    text-align: center;
+    overflow-y: scroll;
+    backdrop-filter: blur(10px);
 }
 
 .name-list-container hr {
     /* border: 5px solid white; */
     /* color: white; */
-    background-color: white;
+    background: white;
     width: 75%;
 }
 
+.picked-name-container-hide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    /* border: 1px solid blue; */
+    color: white;
+    /* background: rgba(255,255,255,0.15); */
+    backdrop-filter: blur(30px);
+    transition: opacity 300ms ease-in;
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    /* animation-name: opacity;
+    animation-duration: 1s; */
+}
+
+#pickedName {
+
+}

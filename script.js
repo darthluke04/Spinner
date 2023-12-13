@@ -18,42 +18,59 @@ const names = [
     "Sandi", //6
     "Amy", //7
     "Kristen",  //8
-    // "Jammie",  //9
-    // "April",  //10
-    // "Michelle",  //11
-    // "Misti",  //12
-    // "Gigi",  //13
-    // "Deanna",  //14
-    // "Julie",  //15
-    // "Jenny",  //16
-    // "Christin",  //17
-    // "SuAnn",  //18
-    // "Britney",  //19
-    // "Erin",  //20
-    // "Mia",  //21
-    // "Virginia",  //22
-    // "Misti",  //23
-    // "Lynda",  //24
-    // "Melissa",  //25
-    // "",  //26
-    // "",  //27
-    // "",  //28
-    // "",  //29
-    // "",  //30
+    "Jammie",  //9
+    "April",  //10
+    "Michelle",  //11
+    "Misti",  //12
+    "Gigi",  //13
+    "Deanna",  //14
+    "Julie",  //15
+    "Jenny",  //16
+    "Christin",  //17
+    "SuAnn",  //18
+    "Britney",  //19
+    "Erin",  //20
+    "Mia",  //21
+    "Virginia",  //22
+    "Misti",  //23
+    "Lynda",  //24
+    "Melissa",  //25
+    // "test",
 ];
 
 var angle = (360 / names.length);
 
-const bounds = [
-    [68, 68 + (angle - 3)],//1
-    [23, 23 + (angle - 3)],//2
-    [338, 22],//3
-    [293, 293 + (angle - 3)],//4
-    [248, 248 + (angle - 3)],//5
-    [203, 203 + (angle - 3)],//6
-    [158, 158 + (angle - 3)],//7
-    [113, 113 + (angle - 3)] //8
+var bounds = [
+    [0, 0],//1
+    [0, 0],//1
+    [0, 0],//1
+    [0, 0],//1
+    [0, 0],//1
+    [0, 0],//1
+    [0, 0],//1
+    [0, 0],//1
 ];
+
+createBounds();
+
+function createBounds() {
+    for(let i = 0; i < names.length; i++) {
+        // bounds[i][0] = ((90) - ((angle - 1) / 2));
+        bounds[i] = [0];
+        var b0 = (((90) - ((angle) * i)) - ((angle - 1) / 2));
+        if(b0 > 0) {
+            bounds[i][0] = (((90) - ((angle) * i)) - ((angle - 1) / 2));
+        } else {
+            bounds[i][0] = (360 - (b0 / -1));
+        }
+        var b1 = (bounds[i][0] - 1) + angle;
+        if(b1 > 360) {
+            bounds[i][1] = (b1) - 360;
+        } else {
+            bounds[i][1] = (bounds[i][0] - 1) + angle;
+        }
+    }
+}
 
 function startJS() {
     document.documentElement.style.setProperty('--angle', angle + "%");
@@ -175,6 +192,8 @@ function rotateWheel() {
             } else {
                 rotateWheel();
             }
+        } else {
+            
         }
     } catch (error) {
         rotateWheel();
@@ -197,7 +216,7 @@ function finishRotate() {
                         console.log(names[i]);
                         setName(names[i]);
                         $("#spinWheel").children().eq(i).children().eq(0).css("text-decoration", "line-through");
-                        $("#spinWheel").children().eq(i).children().eq(0).css("opacity", "25%");
+                        $("#spinWheel").children().eq(i).children().eq(0).css("opacity", "35%");
                         $("#spinWheel").children().eq(i).children().eq(0).val("selected");
                         // names[i] = "";
                     } else {
@@ -212,7 +231,7 @@ function finishRotate() {
                         console.log(names[i]);
                         setName(names[i]);
                         $("#spinWheel").children().eq(i).children().eq(0).css("text-decoration", "line-through");
-                        $("#spinWheel").children().eq(i).children().eq(0).css("opacity", "25%");
+                        $("#spinWheel").children().eq(i).children().eq(0).css("opacity", "35%");
                         $("#spinWheel").children().eq(i).children().eq(0).val("selected");
                         // names[i] = "";
                     } else {
@@ -230,8 +249,17 @@ function finishRotate() {
 
 function setName(name) {
     if(oldName != name) {
-        $("#nameList").append("<h3><li>" + name + "</li></h3>");
         pickedNames.push(name);
+        $("#nameNum").html("<h2>Picked Names</h2> <i>(" + pickedNames.length + " of " + names.length + ")</i>");
+        $("#nameList").append("<h3><li>" + name + "</li></h3>");
+        document.getElementById("nameListContainer").scrollTop += 100;
+        // $("#pickedNameContainer").attr("class", "picked-name-container-show");
+        $("#pickedNameContainer").css("opacity", "100%");
+        $("#pickedName").html("Picked Name: <br>" + name);
+        setTimeout(function() {
+            // $("#pickedNameContainer").attr("class", "picked-name-container-hide");
+            $("#pickedNameContainer").css("opacity", "0%");
+        }, 900);
     }
     oldName = name;
 }
