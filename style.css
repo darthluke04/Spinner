@@ -163,6 +163,12 @@ html {
     width: 75%;
 }
 
+.name-list-container img {
+    /* border: 5px solid white; */
+    /* color: white; */
+    width: 35%;
+}
+
 .picked-name-container-hide {
     display: flex;
     justify-content: center;
